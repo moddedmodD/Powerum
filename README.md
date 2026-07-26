@@ -1,4 +1,4 @@
-![icon](src/main/resources/assets/powerum/icon.png)
+<img alt="icon" height="128" src="src/main/resources/assets/powerum/icon.png" width="128"/>
 
 # Powerum (for Fabric)
 
