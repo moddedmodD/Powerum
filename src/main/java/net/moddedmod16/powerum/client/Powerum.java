@@ -14,17 +14,17 @@ public class Powerum {
 			.getModContainer(MOD_ID)
 			.orElseThrow(NullPointerException::new);
 
-	public static void init(){
+	public static final String MOD_VERSION = Powerum
+			.getMetadata()
+			.getVersion()
+			.getFriendlyString();
 
-		final String MOD_VERSION = Powerum
-				.getMetadata()
-				.getVersion()
-				.getFriendlyString();
+	public static final String MOD_NAME = Powerum
+			.getMetadata()
+			.getName();
 
-		final String MOD_NAME = Powerum
-				.getMetadata()
-				.getName();
 
+	public static void init() {
 		LOGGER.info("{} v{} initialized", MOD_NAME, MOD_VERSION);
 	}
 }

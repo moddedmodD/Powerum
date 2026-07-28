@@ -3,7 +3,7 @@ plugins {
 	`maven-publish`
 }
 
-version = getFullVersion()
+version = providers.gradleProperty("mod_version").get()
 group = providers.gradleProperty("maven_group").get()
 
 repositories {
@@ -22,6 +22,7 @@ dependencies {
 	minecraft("com.mojang:minecraft:${providers.gradleProperty("minecraft_version").get()}")
 	implementation("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
 	implementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
+	implementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
 
 	localRuntime("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
 }
@@ -42,9 +43,10 @@ tasks.withType<JavaCompile>().configureEach {
 	options.release = 25
 }
 
-fun getFullVersion(): String {
-	val version = "${providers.gradleProperty("mod_version").get()}+mc${providers.gradleProperty("minecraft_version").get()}"
-	return version
+tasks.jar {
+	val mcVersion = providers.gradleProperty("minecraft_version").get()
+
+	archiveFileName.set("${project.name}-${version}+mc${mcVersion}.jar")
 }
 
 tasks.jar {
