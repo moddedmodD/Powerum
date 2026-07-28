@@ -28,7 +28,7 @@
 			"net.moddedmod16.powerum.client.entrypoints.PowerumInit"
 		],
 		"modmenu": [
-			"net.moddedmod16.powerum.client.modmenu.ModMenuIntegration"
+			"net.moddedmod16.powerum.client.gui.integration.modmenu.ModMenuIntegration"
 		]
 	},
 	"mixins": [
