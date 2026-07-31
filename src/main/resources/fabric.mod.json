@@ -3,14 +3,9 @@
 	"id": "powerum",
 	"version": "${version}",
 	"name": "Powerum",
-	"description": "An open-source lightweight Minecraft optimization mod made to prevent CPU thermal throttling and memory crashes.",
+	"description": "An open-source powerful Minecraft optimization mod made to prevent CPU thermal throttling and memory crashes.",
 	"authors": [
-		{
-			"name": "modded_mod16",
-			"contact": {
-				"homepage": "https://modrinth.com/user/modded_mod16"
-			}
-		}
+		"modded_mod16"
 	],
 	"contributors": [
 		"GeDev10"
@@ -25,10 +20,10 @@
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"net.moddedmod16.powerum.client.entrypoints.PowerumInit"
+			"net.moddedmod16.powerum.client.PowerumClientMod"
 		],
 		"modmenu": [
-			"net.moddedmod16.powerum.client.gui.integration.modmenu.ModMenuIntegration"
+			"net.moddedmod16.powerum.client.integration.modmenu.ModMenuIntegration"
 		]
 	},
 	"mixins": [
@@ -36,7 +31,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
-		"minecraft": ">=26.1",
+		"minecraft": "~26.2",
 		"java": ">=25",
 		"fabric-api": ">=${fabric_api_version}"
 	},
@@ -51,8 +46,5 @@
 	},
 	"breaks": {
 		"optifabric": "*"
-	},
-	"suggests": {
-		"lithium": "*"
 	}
 }

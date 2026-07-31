@@ -1,6 +1,6 @@
 # Powerum (for Fabric)
 
-An open-source lightweight **Minecraft** optimization mod made to prevent **CPU thermal throttling** and **memory crashes**.
+An open-source powerful **Minecraft** optimization mod made to prevent **CPU thermal throttling** and **memory crashes**.
 
 <p style="text-align: left;">
    <a href="https://fabricmc.net/"><img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg" alt="Fabric" style="margin: 5px 5px;"> </a>

@@ -1,23 +1,26 @@
 package net.moddedmod16.powerum.mixin.gui;
 
-import net.minecraft.client.gui.components.DebugScreenOverlay;
-import net.moddedmod16.powerum.client.gui.integration.debug.DebugOverlay;
+import net.minecraft.client.gui.components.debug.DebugScreenEntryList;
+import net.minecraft.resources.Identifier;
+import net.moddedmod16.powerum.client.PowerumClientMod;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.debug.DebugScreenEntryStatus;
+import java.util.Map;
 
-@Mixin(DebugScreenOverlay.class)
+@Mixin(DebugScreenEntryList.class)
 public class DebugOverlayMixin {
 
-    @Inject(method = "extractRenderState", at = @At("RETURN"))
-    private void powerumCustomOverlay(GuiGraphicsExtractor graphics, CallbackInfo ci){
-        Minecraft client = Minecraft.getInstance();
+    @Final
+    @Shadow
+    private Map<Identifier, DebugScreenEntryStatus> allStatuses;
 
-        if (client.getDebugOverlay().showDebugScreen() && client.player != null){
-            DebugOverlay.render(graphics, client);
-        }
+    @Inject(method = "rebuildCurrentList", at = @At("HEAD"))
+    private void powerum$DebugOverlay(CallbackInfo ci){
+            this.allStatuses.put(PowerumClientMod.POWERUM_DEBUG_KEY, DebugScreenEntryStatus.IN_OVERLAY);
     }
 }

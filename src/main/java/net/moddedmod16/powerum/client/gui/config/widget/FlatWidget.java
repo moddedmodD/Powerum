@@ -6,6 +6,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.NonNull;
 
 public class FlatWidget extends AbstractWidget {
 
@@ -19,15 +20,27 @@ public class FlatWidget extends AbstractWidget {
         this.color = color;
         this.textColor = textColor;
     }
-
     @Override
     protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-        graphics.fill(getX(), getY(), getX() + this.width, getY() + this.height, this.color);
+        graphics.fill(
+                getX(),
+                getY(),
+                getX() + this.width,
+                getY() + this.height,
+                this.color
+        );
 
         int x = this.getX() + (this.width / 2) - (Minecraft.getInstance().font.width(this.getMessage()) / 2);
         int y = this.getY() + (this.height / 2) - (Minecraft.getInstance().font.lineHeight / 2) + 1;
 
-        graphics.text(Minecraft.getInstance().font, this.getMessage(), x, y, this.textColor, false);
+        graphics.text(
+                Minecraft.getInstance().font,
+                this.getMessage(),
+                x,
+                y,
+                this.textColor,
+                false
+        );
     }
 
     @Override
@@ -44,7 +57,6 @@ public class FlatWidget extends AbstractWidget {
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
-        return;
+    protected void updateWidgetNarration(@NonNull NarrationElementOutput output) {
     }
 }

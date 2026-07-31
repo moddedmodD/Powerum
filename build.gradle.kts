@@ -3,7 +3,7 @@ plugins {
 	`maven-publish`
 }
 
-version = providers.gradleProperty("mod_version").get()
+version = getFullVersion()
 group = providers.gradleProperty("maven_group").get()
 
 repositories {
@@ -39,14 +39,17 @@ tasks.processResources {
 	}
 }
 
-tasks.withType<JavaCompile>().configureEach {
-	options.release = 25
-}
-
-tasks.jar {
+fun getFullVersion(): String {
+	val version = providers.gradleProperty("mod_version").get()
 	val mcVersion = providers.gradleProperty("minecraft_version").get()
 
-	archiveFileName.set("${project.name}-${version}+mc${mcVersion}.jar")
+	val fullVersion = "$version+$mcVersion"
+
+	return fullVersion
+}
+
+tasks.withType<JavaCompile>().configureEach {
+	options.release = 25
 }
 
 tasks.jar {
