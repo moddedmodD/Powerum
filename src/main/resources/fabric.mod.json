@@ -23,7 +23,7 @@
 			"net.moddedmod16.powerum.client.PowerumClientMod"
 		],
 		"modmenu": [
-			"net.moddedmod16.powerum.client.integration.modmenu.ModMenuIntegration"
+			"net.moddedmod16.powerum.client.ModMenuIntegration"
 		]
 	},
 	"mixins": [

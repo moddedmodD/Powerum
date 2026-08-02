@@ -33,15 +33,23 @@ public class PowerumClientMod implements ClientModInitializer {
 			.getVersion()
 			.getFriendlyString();
 
+	public static final String MINECRAFT_VERSION = FabricLoader.getInstance()
+			.getModContainer("minecraft")
+			.map(container -> container.getMetadata().getVersion().getFriendlyString())
+			.orElseThrow(NullPointerException::new);
+
+	public static final String SPLIT_MOD_VERSION = MOD_VERSION.
+			split("-")[0]
+			+ "+" + MINECRAFT_VERSION;
+
 	@Override
 	public void onInitializeClient(){
 		DebugScreenEntries.register(POWERUM_DEBUG_KEY, new DebugScreenEntry() {
 			@Override
 			public void display(@NonNull DebugScreenDisplayer displayer, @Nullable Level serverOrClientLevel, @Nullable LevelChunk clientChunk, @Nullable LevelChunk serverChunk) {
-				displayer.addLine("§aPowerum Optimization (" + MOD_VERSION + ")§r");
+				displayer.addLine("§aPowerum Optimization (" + SPLIT_MOD_VERSION + ")§r");
 			}
 		});
-		LOGGER.info("Loaded Powerum debug overlay screen");
 		LOGGER.info("Powerum v{} initialized", MOD_VERSION);
 	}
 }

@@ -6,6 +6,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.components.Tooltip;
 import org.jspecify.annotations.NonNull;
 
 public class FlatWidget extends AbstractWidget {
@@ -14,11 +15,15 @@ public class FlatWidget extends AbstractWidget {
     private int textColor;
     private int color;
 
-    public FlatWidget(int x, int y, int width, int height, Component message, Runnable clickAction, int color, int textColor) {
+    public FlatWidget(int x, int y, int width, int height, Component message, Runnable clickAction, int color, int textColor, Component toolTipText) {
         super(x, y, width, height, message);
         this.clickAction = clickAction;
         this.color = color;
         this.textColor = textColor;
+
+        if (toolTipText != null){
+            this.setTooltip(Tooltip.create(toolTipText));
+        }
     }
     @Override
     protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
