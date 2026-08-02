@@ -43,6 +43,8 @@ public class ApplyLogic {
                 option.save();
             }
         }
+        OptionsStorage.save();
+
         updateColors();
 
         Minecraft.getInstance().gui.setScreen(screen);

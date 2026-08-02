@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.debug.DebugScreenEntry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.moddedmod16.powerum.client.gui.config.OptionsStorage;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -50,6 +51,20 @@ public class PowerumClientMod implements ClientModInitializer {
 				displayer.addLine("§aPowerum Optimization (" + SPLIT_MOD_VERSION + ")§r");
 			}
 		});
+		OptionsStorage.load();
 		LOGGER.info("Powerum v{} initialized", MOD_VERSION);
+
+		// 🧪 TEST VELOCE HARDWARE: Buttiamo 6 finti compiti pesanti nella coda all'avvio!
+		for (int i = 0; i < 6; i++) {
+			net.moddedmod16.powerum.client.cpu.ThreadCreator.submintTask(() -> {
+				try {
+					// Ogni thread finto rimane occupato per 5 secondi per darti il tempo di guardare il Task Manager
+					Thread.sleep(9000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+			});
+		}
+
 	}
 }
