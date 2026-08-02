@@ -1,4 +1,4 @@
-package net.moddedmod16.powerum.mixin.gui;
+package net.moddedmod16.powerum.mixin;
 
 import net.minecraft.client.gui.components.debug.DebugScreenEntryList;
 import net.minecraft.resources.Identifier;

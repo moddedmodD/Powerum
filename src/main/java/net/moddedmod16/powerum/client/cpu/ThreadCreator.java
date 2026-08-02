@@ -1,5 +1,7 @@
 package net.moddedmod16.powerum.client.cpu;
 
+import net.moddedmod16.powerum.client.PowerumClientMod;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -9,8 +11,9 @@ public class ThreadCreator {
     private static final ConcurrentLinkedQueue<Runnable> TASK_QUEUE = new ConcurrentLinkedQueue<>();
     private static final AtomicInteger ACTIVE_THREADS = new AtomicInteger();
 
-    public static void submintTask(Runnable assetTask){
+    public static void submitTask(Runnable assetTask){
         if (assetTask == null) return;
+
         TASK_QUEUE.add(assetTask);
         if (ACTIVE_THREADS.get() < MAX_THREADS && !TASK_QUEUE.isEmpty()) {
             spawnThreads();
@@ -24,9 +27,10 @@ public class ThreadCreator {
                     Runnable task = TASK_QUEUE.poll();
                     if (task != null) {
                         try {
+                            System.out.println("🔥 [Powerum] " + Thread.currentThread().getName() + " sta caricando un asset reale!");
                             task.run();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            PowerumClientMod.LOGGER.error("", e);
                         }
                     } else {
                         break;

@@ -54,17 +54,5 @@ public class PowerumClientMod implements ClientModInitializer {
 		OptionsStorage.load();
 		LOGGER.info("Powerum v{} initialized", MOD_VERSION);
 
-		// 🧪 TEST VELOCE HARDWARE: Buttiamo 6 finti compiti pesanti nella coda all'avvio!
-		for (int i = 0; i < 6; i++) {
-			net.moddedmod16.powerum.client.cpu.ThreadCreator.submintTask(() -> {
-				try {
-					// Ogni thread finto rimane occupato per 5 secondi per darti il tempo di guardare il Task Manager
-					Thread.sleep(9000);
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-				}
-			});
-		}
-
 	}
 }
