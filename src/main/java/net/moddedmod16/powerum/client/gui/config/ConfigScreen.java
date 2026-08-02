@@ -62,7 +62,7 @@ public class ConfigScreen extends Screen {
                 },
                 0xFF000000,
                 0xFFFFFFFF,
-                Component.literal("Close the GUI")
+                Component.literal("Close GUI")
         ));
         this.addRenderableWidget(new FlatWidget(
                 this.width - 60 - 15 - 60 - 4,
@@ -76,7 +76,7 @@ public class ConfigScreen extends Screen {
                 },
                 color,
                 textColor,
-                Component.literal("Apply all the changes")
+                Component.literal("Apply all")
         ));
 
         this.addRenderableWidget(new ScreenBlit(
@@ -102,7 +102,7 @@ public class ConfigScreen extends Screen {
                 },
                 0x60000000,
                 0xFFFFFFFF,
-                Component.literal("General settings")
+                Component.literal("General Settings")
         ));
         if (this.actualPage == PagesEnum.GENERAL) {
             GeneralPage.build(this);

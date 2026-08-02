@@ -46,7 +46,7 @@ public class GeneralPage {
                 },
                 0x40000000,
                 0xFFFFFFFF,
-                Component.literal("Toggle Powerum Debug Overlay label")
+                Component.literal("Toggle Powerum Debug Overlay (label), keep this enabled if you are unsure")
         ));
     }
 
