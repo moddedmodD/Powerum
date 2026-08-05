@@ -5,8 +5,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.moddedmod16.powerum.client.PowerumClientMod;
-import net.moddedmod16.powerum.client.gui.config.widget.ScreenBlit;
 import net.moddedmod16.powerum.client.gui.config.pages.GeneralPage;
+import net.moddedmod16.powerum.client.gui.config.widget.ScreenBlit;
 import net.moddedmod16.powerum.client.gui.config.pages.PagesEnum;
 import net.moddedmod16.powerum.client.gui.config.widget.FlatWidget;
 import org.jspecify.annotations.NonNull;
@@ -25,7 +25,7 @@ public class ConfigScreen extends Screen {
         this.parent = parent;
     }
 
-    private PagesEnum actualPage = PagesEnum.GENERAL;
+    public static PagesEnum actualPage = PagesEnum.GENERAL;
 
     @Override
     public void onClose() {
@@ -90,23 +90,14 @@ public class ConfigScreen extends Screen {
                 CONFIG_ICON,
                 Component.literal("Powerum")
         ));
-        this.addRenderableWidget(new FlatWidget(
-                15,
-                15 + 24,
-                100,
-                20,
-                Component.literal(""),
-                () -> {
-                    this.actualPage = PagesEnum.GENERAL;
-                    this.init();
-                },
-                0x60000000,
-                0xFFFFFFFF,
-                Component.literal("General Settings")
-        ));
-        if (this.actualPage == PagesEnum.GENERAL) {
+
+        if (actualPage == PagesEnum.GENERAL){
             GeneralPage.build(this);
         }
+    }
+
+    public void publicInit(){
+        init();
     }
 
     @Override
@@ -124,7 +115,7 @@ public class ConfigScreen extends Screen {
 
         super.extractRenderState(graphics, mouseX, mouseY, delta);
 
-        if (this.actualPage == PagesEnum.GENERAL) {
+        if (actualPage == PagesEnum.GENERAL){
             GeneralPage.render(graphics, this);
         }
 
@@ -132,14 +123,6 @@ public class ConfigScreen extends Screen {
                 this.minecraft.font,
                 PowerumClientMod.SPLIT_MOD_VERSION,
                 15 + 16 + 4, 19 + 8 + 2,
-                0xFFFFFFFF,
-                false
-        );
-
-        graphics.text(
-                this.minecraft.font,
-                "General",
-                15 + 15, (15 + 24) + (20 / 2) - (9 / 2),
                 0xFFFFFFFF,
                 false
         );

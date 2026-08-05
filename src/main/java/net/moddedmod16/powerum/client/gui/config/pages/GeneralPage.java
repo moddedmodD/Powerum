@@ -33,6 +33,21 @@ public class GeneralPage {
         });
 
         screen.addFlatRenderableWidget(new FlatWidget(
+                15,
+                15 + 24,
+                100,
+                20,
+                Component.literal(""),
+                () -> {
+                    ConfigScreen.actualPage = PagesEnum.GENERAL;
+                    screen.publicInit();
+                },
+                0x60000000,
+                0xFFFFFFFF,
+                Component.literal("General Settings")
+        ));
+
+        screen.addFlatRenderableWidget(new FlatWidget(
                 15 + 90 + 20,
                 40,
                 screen.width - (15 + 100 + 20) - 20,
@@ -42,11 +57,11 @@ public class GeneralPage {
                     TEMP_DEBUG_OVERLAY = !TEMP_DEBUG_OVERLAY;
                     ApplyLogic.updateColors();
 
-                    Minecraft.getInstance().gui.setScreen(screen);
+                    screen.publicInit();
                 },
                 0x40000000,
                 0xFFFFFFFF,
-                Component.literal("Toggle Powerum Debug Overlay (label), keep this enabled if you are unsure")
+                Component.literal("Toggle Powerum Debug Overlay, keep this enabled if you are unsure")
         ));
     }
 
@@ -64,6 +79,13 @@ public class GeneralPage {
                 "Debug Overlay" + " ".repeat(Math.max(1, ((screen.width - (15 + 100 + 20) - 20) - 24 - Minecraft.getInstance().font.width("Debug Overlay") - Minecraft.getInstance().font.width(TEMP_DEBUG_OVERLAY ? "ON" : "OFF")) / 4)) + (TEMP_DEBUG_OVERLAY ? "ON" : "OFF"),
                 135 + 6,
                 40 + (20 / 2) - (9 / 2),
+                0xFFFFFFFF,
+                false
+        );
+        graphics.text(
+                Minecraft.getInstance().font,
+                "General",
+                15 + 15, (15 + 24) + (20 / 2) - (9 / 2),
                 0xFFFFFFFF,
                 false
         );

@@ -22,7 +22,7 @@ public class DebugOverlayMixin {
 
     @Inject(method = "rebuildCurrentList", at = @At("HEAD"))
     private void powerum$DebugOverlay(CallbackInfo ci) {
-        if (GeneralPage.DEBUG_OVERLAY) {
+        if (GeneralPage.DEBUG_OVERLAY){
             this.allStatuses.put(PowerumClientMod.POWERUM_DEBUG_KEY, DebugScreenEntryStatus.IN_OVERLAY);
         } else {
             this.allStatuses.remove(PowerumClientMod.POWERUM_DEBUG_KEY);

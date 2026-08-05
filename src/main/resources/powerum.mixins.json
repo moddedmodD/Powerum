@@ -1,15 +1,14 @@
 {
-	"required": true,
-	"package": "net.moddedmod16.powerum.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"DebugOverlayMixin",
-		"culling.EntityCullingMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "net.moddedmod16.powerum.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "DebugOverlayMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }

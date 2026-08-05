@@ -19,11 +19,7 @@ public class PowerumClientMod implements ClientModInitializer {
 
 	public static final Identifier POWERUM_DEBUG_KEY = Identifier.fromNamespaceAndPath("powerum", "powerum_debug_info");
 	public static final String MOD_ID = "powerum";
-	public static final Logger LOGGER = LoggerFactory.getLogger("Powerum");
-
-	static {
-		LOGGER.info("Initializing Powerum");
-	}
+	private static final Logger LOGGER = LoggerFactory.getLogger("Powerum");
 
 	public static final ModContainer Powerum = FabricLoader.getInstance()
 			.getModContainer(MOD_ID)
@@ -45,14 +41,14 @@ public class PowerumClientMod implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient(){
+
 		DebugScreenEntries.register(POWERUM_DEBUG_KEY, new DebugScreenEntry() {
 			@Override
 			public void display(@NonNull DebugScreenDisplayer displayer, @Nullable Level serverOrClientLevel, @Nullable LevelChunk clientChunk, @Nullable LevelChunk serverChunk) {
-				displayer.addLine("§aPowerum Optimization (" + SPLIT_MOD_VERSION + ")§r");
+				displayer.addLine("§aPowerum Optimization (" + SPLIT_MOD_VERSION + ")");
 			}
 		});
 		OptionsStorage.load();
-		LOGGER.info("Powerum v{} initialized", MOD_VERSION);
-
+		LOGGER.info("CPU: {}", System.getenv("PROCESSOR_IDENTIFIER"));
 	}
 }

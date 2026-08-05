@@ -7,6 +7,8 @@ import com.google.gson.JsonParser;
 import net.moddedmod16.powerum.client.PowerumClientMod;
 import net.fabricmc.loader.api.FabricLoader;
 import net.moddedmod16.powerum.client.gui.config.pages.GeneralPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
@@ -15,7 +17,8 @@ import java.io.IOException;
 
 public class OptionsStorage {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "powerum-options.json");
+    private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), PowerumClientMod.MOD_ID + "-options.json");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Powerum-OptionsStorage");
 
     public static void save(){
 
@@ -23,12 +26,13 @@ public class OptionsStorage {
             try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
                 JsonObject json = new JsonObject();
 
+                json.addProperty("_comment", "if options are not saving try deleting this file");
                 json.addProperty("debug_overlay", GeneralPage.DEBUG_OVERLAY);
 
                 GSON.toJson(json, writer);
-                PowerumClientMod.LOGGER.info("Configuration file successfully saved");
+                LOGGER.info("Changes successfully applied");
                 } catch (IOException e){
-                PowerumClientMod.LOGGER.error("Failed to save configuration file");
+                LOGGER.error("Failed to save configuration file");
             }
         }).start();
     }
@@ -43,9 +47,9 @@ public class OptionsStorage {
                     GeneralPage.DEBUG_OVERLAY = json.get("debug_overlay").getAsBoolean();
                     GeneralPage.TEMP_DEBUG_OVERLAY = GeneralPage.DEBUG_OVERLAY;
                 }
-                PowerumClientMod.LOGGER.info("Successfully loaded configuration file");
+                LOGGER.info("Configuration file successfully loaded");
             } catch (IOException e){
-                PowerumClientMod.LOGGER.error("Failed to read configuration file ", e);
+                LOGGER.error("Failed to read configuration file ", e);
             }
         }
     }
