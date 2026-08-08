@@ -37,7 +37,7 @@ public class GeneralPage {
                 15 + 24,
                 100,
                 20,
-                Component.literal(""),
+                Component.literal("General"),
                 () -> {
                     ConfigScreen.actualPage = PagesEnum.GENERAL;
                     screen.publicInit();
@@ -79,13 +79,6 @@ public class GeneralPage {
                 "Debug Overlay" + " ".repeat(Math.max(1, ((screen.width - (15 + 100 + 20) - 20) - 24 - Minecraft.getInstance().font.width("Debug Overlay") - Minecraft.getInstance().font.width(TEMP_DEBUG_OVERLAY ? "ON" : "OFF")) / 4)) + (TEMP_DEBUG_OVERLAY ? "ON" : "OFF"),
                 135 + 6,
                 40 + (20 / 2) - (9 / 2),
-                0xFFFFFFFF,
-                false
-        );
-        graphics.text(
-                Minecraft.getInstance().font,
-                "General",
-                15 + 15, (15 + 24) + (20 / 2) - (9 / 2),
                 0xFFFFFFFF,
                 false
         );

@@ -39,13 +39,20 @@ public class PowerumClientMod implements ClientModInitializer {
 			split("-")[0]
 			+ "+" + MINECRAFT_VERSION;
 
+	public static String LAST_PACKET = "null";
+
 	@Override
 	public void onInitializeClient(){
 
 		DebugScreenEntries.register(POWERUM_DEBUG_KEY, new DebugScreenEntry() {
 			@Override
 			public void display(@NonNull DebugScreenDisplayer displayer, @Nullable Level serverOrClientLevel, @Nullable LevelChunk clientChunk, @Nullable LevelChunk serverChunk) {
-				displayer.addLine("§aPowerum Optimization (" + SPLIT_MOD_VERSION + ")");
+
+				displayer.addLine("§aPowerum (" + SPLIT_MOD_VERSION + ")");
+
+				if (serverOrClientLevel != null) {
+					displayer.addLine("Async net: " + LAST_PACKET);
+				}
 			}
 		});
 		OptionsStorage.load();

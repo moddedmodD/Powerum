@@ -5,6 +5,9 @@
   "mixins": [
     "DebugOverlayMixin"
   ],
+  "client": [
+    "ConnectionThreadMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

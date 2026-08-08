@@ -9,8 +9,8 @@ public class ThreadPool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Powerum-ThreadPool");
     private static final ExecutorService WORKER_POOL = new ThreadPoolExecutor(
-            6,
             2,
+            6,
             60L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
             runnable -> {
@@ -23,7 +23,6 @@ public class ThreadPool {
         if (runnable != null){
             WORKER_POOL.submit(() -> {
                 try {
-                    LOGGER.info("(MAY SPAM) (this is only for development) Thread created");
                     runnable.run();
                 } catch (Exception e){
                     LOGGER.error("Action was interrupted ", e);
